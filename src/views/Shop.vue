@@ -68,6 +68,10 @@ main {
   font-size: 24px;
 }
 
+#filters {
+  margin-top: 100px;
+}
+
 #filters span {
   margin-right: 120px;
   font-size: 16px;

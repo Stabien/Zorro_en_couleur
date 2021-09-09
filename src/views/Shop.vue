@@ -72,7 +72,7 @@ main {
   margin-right: 120px;
   font-size: 16px;
   cursor: pointer;
-  transition: 0.25s;
+  transition: 0.15s;
 }
 
 #filters span:hover,

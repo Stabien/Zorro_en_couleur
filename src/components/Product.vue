@@ -1,18 +1,29 @@
 <template>
   <a href="#" class="product">
-    <img src="@/assets/masque.png"/>
+    <img :src="getImgUrl(data.photo)"/>
     <div class="product-infos">
-      <span>MAISON</span>
-      <h2>BOUILLOTE</h2>
+      <span>{{ data.category.toUpperCase() }}</span>
+      <h2>{{ data.name }}</h2>
       <p>A partir de</p>
-      <h3>14,00 €</h3>
+      <h3>{{ data.price }},00 €</h3>
     </div>
   </a>
 </template>
 
 <script>
 export default {
-  name: 'Product'
+  name: 'Product',
+  props: {
+    data: {
+      required: true,
+      type: Object
+    }
+  },
+  methods: {
+    getImgUrl(path) {
+      return require('@/' + path);
+    }
+  }
 }
 </script>
 
@@ -20,9 +31,10 @@ export default {
 .product {
   display: block;
   background: white;
-  border: 12px solid white;
+  border: 1px solid #EAEBEE;
+  padding: 12px;
   border-radius: 20px;
-  width: 300px;
+  width: 290px;
   text-decoration: none;
   color: black;
   margin: 20px 30px;
@@ -30,8 +42,8 @@ export default {
 }
 
 .product img {
-  width: 300px;
-  height: 300px;
+  max-width: 290px;
+  height: 290px;
 }
 
 .product-infos {

@@ -1,7 +1,24 @@
 <template>
   <router-view/>
 </template>
-
+<script>
+export default {
+  mounted() {
+    // API request to get all products
+    fetch('http://localhost:4000/api/cloth')
+      .then(response => response.json())
+      .then(response => this.$store.commit('fillCloths', response.recordset));
+    // API request to get all cloths
+    fetch('http://localhost:4000/api/product')
+      .then(response => response.json())
+      .then(response => this.$store.commit('fillProducts', response));
+    // API Request get all categories
+    fetch('http://localhost:4000/api/category')
+      .then(response => response.json())
+      .then(response => this.$store.commit('fillCategories', response.recordset));
+  }
+}
+</script>
 <style>
 @font-face {
   font-family: 'Inter';

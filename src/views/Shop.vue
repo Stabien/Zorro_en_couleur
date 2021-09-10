@@ -16,8 +16,8 @@
       <span
         v-for="(element, index) in filters"
         :key="index"
-        @click="updateFilters(index)"
-        :class="{ active : index == currentFilter }"
+        @click="updateFilters(element)"
+        :class="{ active : element == currentFilter }"
       >
         {{ element }}
       </span>
@@ -25,10 +25,12 @@
     <section id="products">
       <h2>Nos produits</h2>
       <div id="product-items-container">
-        <Product/>
-        <Product/>
-        <Product/>
-        <Product/>
+        <Product
+          v-for="element in getProducts"
+          :key="element.id"
+          :data="element"
+          :class="{ hidden : currentFilter != 'TOUS' && currentFilter != element.category.toUpperCase() }"
+        />
       </div>
     </section>
   </main>
@@ -45,11 +47,17 @@ export default {
   },
   data: () => ({
     filters: ['TOUS', 'MAISON', 'MODE'],
-    currentFilter: 0
+    currentFilter: 'TOUS'
   }),
   methods: {
-    updateFilters(index) {
-      this.currentFilter = index
+    updateFilters(filter) {
+      this.currentFilter = filter;
+      console.log(this.currentFilter);
+    }
+  },
+  computed: {
+    getProducts() {
+      return this.$store.getters.getProducts;
     }
   }
 }
@@ -101,5 +109,10 @@ main {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  /*justify-content: center;*/
+}
+
+.hidden {
+  display: none;
 }
 </style>

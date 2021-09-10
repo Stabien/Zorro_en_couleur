@@ -171,13 +171,6 @@ export default {
 </script>
 
 <style scoped>
-@font-face {
-    font-family: 'Inter';
-    src: url('../assets/fonts/Inter.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
 body {
   background: white;
   padding: 0;

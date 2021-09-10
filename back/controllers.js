@@ -1,4 +1,6 @@
 const sql = require('mssql');
+const { Pool } = require('pg');
+const dotenv = require('dotenv').config();
 
 // mssql configuration
 const config = {
@@ -10,6 +12,14 @@ const config = {
     "enableArithAbort": true,
   }
 };
+
+const database = new Pool({
+  user: 'postgres',
+  password: process.env.PG_PASSWORD,
+  database: 'zorro_en_couleur',
+  host: 'localhost',
+  port: 5432
+});
 
 exports.getAllCloths = (req, res) => {
   // database connection
@@ -31,22 +41,12 @@ exports.getAllCloths = (req, res) => {
 }
 
 exports.getAllProducts = (req, res) => {
-  // Database connection
-  sql.connect(config, (err) => {
-    if (err)
-      res.send(err);
-    else {
-      const request = new sql.Request();
-      // Execute request
-      request.query("SELECT * FROM product ORDER BY name",
-      (error, response) => {
-        if (error)
-          res.send(error)
-        else
-          res.send(response);
-      });
-    }
-  });
+  const request = "SELECT * FROM products ORDER BY name";
+
+  database
+    .query(request)
+    .then(response => res.json(response.rows))
+    .catch(error => res.send(error));
 }
 
 exports.getAllCategories = (req, res) => {

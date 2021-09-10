@@ -1,4 +1,5 @@
 const controllers = require('./controllers');
+const dotenv = require('dotenv').config();
 
 module.exports = (app) => {
   app.route('/api/cloth')

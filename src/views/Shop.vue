@@ -3,7 +3,7 @@
     <Navigation/>
   </header>
   <main>
-    <div id="presentation">
+    <section id="presentation">
       <h1>Optez pour un produit, choisissez votre tissu et c’est parti.</h1>
       <p>
         Bienvenue dans la Boutique de Zorro en Couleur.<br>
@@ -11,8 +11,8 @@
         qu’il vous faut dans votre tissu préféré. Nous le fabriquons sur commande rien que
         pour vos beaux yeux et vous le livrons directement à la maison !
       </p>
-    </div>
-    <div id="filters">
+    </section>
+    <section id="filters">
       <span
         v-for="(element, index) in filters"
         :key="index"
@@ -21,16 +21,27 @@
       >
         {{ element }}
       </span>
-    </div>
+    </section>
+    <section id="products">
+      <h2>Nos produits</h2>
+      <div id="product-items-container">
+        <Product/>
+        <Product/>
+        <Product/>
+        <Product/>
+      </div>
+    </section>
   </main>
 </template>
 <script>
 import Navigation from '../components/Navigation.vue'
+import Product from '../components/Product.vue'
 
 export default {
   name: 'Shop',
   components: {
     Navigation,
+    Product
   },
   data: () => ({
     filters: ['TOUS', 'MAISON', 'MODE'],
@@ -43,16 +54,13 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 body {
-  background: white;
-  padding: 0;
-  margin: 0;
-  font-family: 'Inter';
+  background: #F6F9FC;
 }
 
 main {
-  width: 65%;
+  width: 70%;
   margin: 0 auto;
 }
 
@@ -73,14 +81,25 @@ main {
 }
 
 #filters span {
-  margin-right: 120px;
-  font-size: 16px;
+  margin-right: 150px;
+  font-size: 20px;
   cursor: pointer;
   transition: 0.15s;
 }
 
 #filters span:hover,
 #filters .active {
-  color: #3CAAB1
+  color: #3CAAB1;
+}
+
+#products h2 {
+  font-weight: 500;
+  margin-top: 60px;
+}
+
+#product-items-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 </style>

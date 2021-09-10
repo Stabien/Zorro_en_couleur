@@ -54,7 +54,7 @@ export default {
     // API request to get all cloths
     fetch('http://localhost:4000/api/product')
       .then(response => response.json())
-      .then(response => this.$store.commit('fillProducts', response.recordset));
+      .then(response => this.$store.commit('fillProducts', response));
     // API Request get all categories
     fetch('http://localhost:4000/api/category')
       .then(response => response.json())

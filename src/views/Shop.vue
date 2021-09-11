@@ -29,7 +29,10 @@
           v-for="element in getProducts"
           :key="element.id"
           :data="element"
-          :class="{ hidden : currentFilter != 'TOUS' && currentFilter != element.category.toUpperCase() }"
+          :class="{ hidden :
+            currentFilter != 'TOUS' &&
+            currentFilter != element.category.toUpperCase()
+          }"
         />
       </div>
     </section>

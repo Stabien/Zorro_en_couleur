@@ -8,7 +8,7 @@
         <li
           v-for="item in buttonsToDisplay"
           :key="item"
-          :class="{ active: item.component == getRouteName() }"
+          :class="{ active: item.path.includes(getRouteName()) }"
         >
           <a :href="item.path">
             {{ item.name }}
@@ -34,12 +34,10 @@ export default {
       {
         name: 'Accueil',
         path: '/',
-        component: 'Home'
       },
       {
         name: 'Nos produits',
         path: '/boutique',
-        component: 'Shop'
       },
       {
         name: 'Notre atelier',
@@ -48,7 +46,6 @@ export default {
       {
         name: 'Gallerie des tissus',
         path: '/gallerie',
-        component: 'Gallery'
       },
       {
         name: 'Nos partenaires',
@@ -58,7 +55,7 @@ export default {
   }),
   methods: {
     getRouteName() {
-      return useRoute().name
+      return useRoute().path.split('/')[1];
     }
   }
 }

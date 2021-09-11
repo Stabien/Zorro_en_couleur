@@ -1,9 +1,9 @@
 <template>
-  <a href="#" class="product">
+  <a :href="'boutique/' + data.name" class="product">
     <img :src="getImgUrl(data.photo)"/>
     <div class="product-infos">
       <span>{{ data.category.toUpperCase() }}</span>
-      <h2>{{ data.name }}</h2>
+      <h2>{{ data.name.toUpperCase() }}</h2>
       <p>A partir de</p>
       <h3>{{ data.price }},00 €</h3>
     </div>
@@ -33,8 +33,8 @@ export default {
   background: white;
   border: 1px solid #EAEBEE;
   padding: 12px;
-  border-radius: 20px;
-  width: 290px;
+  border-radius: 15px;
+  width: 275px;
   text-decoration: none;
   color: black;
   margin: 20px 30px;
@@ -42,8 +42,8 @@ export default {
 }
 
 .product img {
-  max-width: 290px;
-  height: 290px;
+  max-width: 275px;
+  height: 275px;
 }
 
 .product-infos {
@@ -52,7 +52,8 @@ export default {
 }
 
 .product-infos span {
-  font-size: 14px;
+  display: block;
+  font-size: 12px;
   color: #A3A3A3;
   font-weight: 400;
 }
@@ -65,14 +66,15 @@ export default {
 }
 
 .product-infos p {
-  margin-top: 10px;
+  margin-top: 5px;
   margin-bottom: 0;
-  font-size: 14px;
+  font-size: 12px;
   color: #3CAAB1;
 }
 
 .product-infos h3 {
-  margin-top: 0px;
+  margin-top: 0;
+  margin-bottom: 10px;
   color: #3CAAB1;
   font-size: 20px;
 }

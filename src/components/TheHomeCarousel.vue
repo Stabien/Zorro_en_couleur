@@ -42,7 +42,7 @@
 
 <script>
 export default {
-  name: 'Carousel',
+  name: 'TheHomeCarousel',
   data: () => ({
     currentSlide: 0,
     slideRefs: [],

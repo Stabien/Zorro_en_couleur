@@ -15,7 +15,7 @@
     <section id="news">
       <h2>Nos dernières actualités</h2>
       <div id="news-content-container">
-        <Carousel/>
+        <TheHomeCarousel/>
       </div>
     </section>
     <section id="our-values">
@@ -120,14 +120,14 @@
 
 <script>
 import Navigation from '../components/Navigation.vue'
-import Carousel from '../components/Carousel.vue'
+import TheHomeCarousel from '../components/TheHomeCarousel.vue'
 import LastItemsSold from '../components/LastItemsSold.vue'
 
 export default {
   name: 'Home',
   components: {
     Navigation,
-    Carousel,
+    TheHomeCarousel,
     LastItemsSold
   },
   data: () => ({

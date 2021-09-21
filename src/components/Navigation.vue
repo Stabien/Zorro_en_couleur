@@ -1,14 +1,14 @@
 <template>
   <nav>
-    <div id="nav-logo" class="container-side-nav-item">
+    <a href="/" id="nav-logo" class="container-side-nav-item">
       <img src="@/assets/logo_nav.png">
-    </div>
+    </a>
     <div id="container-nav-menu">
       <ul>
         <li
           v-for="item in buttonsToDisplay"
           :key="item"
-          :class="{ active: item.path.includes(getRouteName()) }"
+          :class="{ active: isCurrentRoute(item.path) }"
         >
           <a :href="item.path">
             {{ item.name }}
@@ -36,7 +36,7 @@ export default {
         path: '/',
       },
       {
-        name: 'Nos produits',
+        name: 'La boutique',
         path: '/boutique',
       },
       {
@@ -54,8 +54,10 @@ export default {
     ]
   }),
   methods: {
-    getRouteName() {
-      return useRoute().path.split('/')[1];
+    isCurrentRoute(route) {
+      if (useRoute().path == '/')
+        return useRoute().path == route;
+      return route.includes(useRoute().path.split('/')[1]);
     }
   }
 }

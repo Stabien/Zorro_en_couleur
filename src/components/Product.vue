@@ -1,5 +1,5 @@
 <template>
-  <a :href="'boutique/' + data.name" class="product">
+  <a :href="'/boutique/' + data.name" class="product">
     <img :src="getImgUrl(data.photo)"/>
     <div class="product-infos">
       <span>{{ data.category.toUpperCase() }}</span>
@@ -34,16 +34,16 @@ export default {
   border: 1px solid #EAEBEE;
   padding: 12px;
   border-radius: 15px;
-  width: 275px;
+  width: 285px;
   text-decoration: none;
   color: black;
-  margin: 20px 30px;
+  margin: 20px 10px;
   margin-left: 0;
 }
 
 .product img {
-  max-width: 275px;
-  height: 275px;
+  width: 285px;
+  height: 285px;
 }
 
 .product-infos {

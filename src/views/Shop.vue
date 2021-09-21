@@ -1,17 +1,17 @@
 <template>
   <header>
     <Navigation/>
-  </header>
-  <main>
-    <section id="presentation">
-      <h1>Optez pour un produit, choisissez votre tissu et c’est parti.</h1>
-      <p>
-        Bienvenue dans la Boutique de Zorro en Couleur.<br>
-        Fiers de notre savoir faire, nous vous offrons la possibilité de choisir le produit
-        qu’il vous faut dans votre tissu préféré. Nous le fabriquons sur commande rien que
-        pour vos beaux yeux et vous le livrons directement à la maison !
-      </p>
-    </section>
+      <div id="presentation">
+        <h1>Optez pour un produit, choisissez votre tissu et c’est parti.</h1>
+        <p>
+          Bienvenue dans la Boutique de Zorro en Couleur.<br>
+          Fiers de notre savoir faire, nous vous offrons la possibilité de choisir le produit
+          qu’il vous faut dans votre tissu préféré. Nous le fabriquons sur commande rien que
+          pour vos beaux yeux et vous le livrons directement à la maison !
+        </p>
+      </div>
+    </header>
+    <main>
     <section id="filters">
       <span
         v-for="(element, index) in filters"
@@ -26,7 +26,7 @@
       <h2>Nos produits</h2>
       <div id="product-items-container">
         <Product
-          v-for="element in getProducts"
+          v-for="element in products"
           :key="element.id"
           :data="element"
           :class="{ hidden :
@@ -55,11 +55,10 @@ export default {
   methods: {
     updateFilters(filter) {
       this.currentFilter = filter;
-      console.log(this.currentFilter);
     }
   },
   computed: {
-    getProducts() {
+    products() {
       return this.$store.getters.getProducts;
     }
   }
@@ -70,13 +69,14 @@ body {
   background: #F6F9FC;
 }
 
-main {
+main,
+#presentation {
   width: 70%;
   margin: 0 auto;
 }
 
 #presentation {
-  margin: 50px 0;
+  margin: 50px auto;
 }
 
 #presentation h1 {
@@ -112,7 +112,7 @@ main {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  /*justify-content: center;*/
+  justify-content: space-between;
 }
 
 .hidden {

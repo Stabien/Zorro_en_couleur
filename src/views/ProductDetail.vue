@@ -3,6 +3,13 @@
   <h1>{{ productName }}</h1>
   <div id="product-presentation">
     <TheProductDetailCarousel :data="currentProduct.photo"/>
+    <div id="description">
+      <p>
+        La trousse est conçue avec deux tissus de votre choix, pour l’intérieur et l’extérieur.
+        Parce que nous on pense que le principal, c’est ce qu’il y a à l’intérieur.
+        blablabka textete xtefeuue Disponible en deux tailles.
+      </p>
+    </div>
   </div>
 </template>
 <script>
@@ -44,4 +51,9 @@ h1 {
   overflow-x: hidden;
 }
 
+#description {
+  width: 70%;
+  margin: auto;
+  margin-top: 60px;
+}
 </style>

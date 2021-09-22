@@ -12,7 +12,8 @@
           :style="{ transition: this.transition }"
           :class="{
             active: currentSlide == 0,
-            hidden: currentSlide > 1
+            hidden: currentSlide > 1,
+            isPrevious: currentSlide >= 1
           }"
         />
       </div>
@@ -22,7 +23,8 @@
           :style="{ transition: this.transition }"
           :class="{
             active: currentSlide == 1,
-            hidden: currentSlide > 2
+            hidden: currentSlide > 2,
+            isPrevious: currentSlide >= 2,
           }"
         />
       </div>
@@ -32,7 +34,9 @@
           :style="{ transition: this.transition }"
           :class="{
             active: currentSlide == 2,
-            hidden: currentSlide > 3
+            hidden: currentSlide > 3,
+            isPrevious: currentSlide >= 3,
+            isNext: currentSlide <= 1
           }"
         />
       </div>
@@ -42,7 +46,9 @@
           :style="{ transition: this.transition }"
           :class="{
             active: currentSlide == 3,
-            hidden: (currentSlide > 4 || currentSlide < 2)
+            hidden: (currentSlide > 4 || currentSlide < 2),
+            isPrevious: currentSlide >= 4,
+            isNext: currentSlide <= 2
           }"
         />
       </div>
@@ -52,7 +58,9 @@
           :style="{ transition: this.transition }"
           :class="{
             active: currentSlide == 4,
-            hidden: currentSlide < 3
+            hidden: currentSlide < 3,
+            isPrevious: currentSlide >= 5,
+            isNext: currentSlide <= 3
           }"
         />
       </div>
@@ -62,7 +70,8 @@
           :style="{ transition: this.transition }"
           :class="{
             active: currentSlide == 5,
-            hidden: currentSlide < 4
+            hidden: currentSlide < 4,
+            isNext: currentSlide >= 4
           }"
         />
       </div>
@@ -72,7 +81,8 @@
           :style="{ transition: this.transition }"
           :class="{
             active: currentSlide == 6,
-            hidden: currentSlide < 5
+            hidden: currentSlide < 5,
+            isNext: currentSlide >= 5
           }"
         />
       </div>
@@ -184,7 +194,14 @@ export default {
   height: 300px;
   opacity: 0.5;
   margin: auto;
+}
+
+.isPrevious {
   mask-image: linear-gradient(to left, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.2));
+}
+
+.isNext {
+  mask-image: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.2));
 }
 
 #container-img .hidden {

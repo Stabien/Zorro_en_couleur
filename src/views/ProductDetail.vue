@@ -1,7 +1,9 @@
 <template>
   <Navigation/>
   <h1>{{ productName }}</h1>
-  <TheProductDetailCarousel :data="currentProduct.photo"/>
+  <div id="product-presentation">
+    <TheProductDetailCarousel :data="currentProduct.photo"/>
+  </div>
 </template>
 <script>
 import Navigation from '../components/Navigation.vue'
@@ -33,4 +35,13 @@ h1 {
   font-size: 48px;
   margin-Left: 20%;
 }
+
+#product-presentation {
+  display: block;
+  position: relative;
+  background: white;
+  padding: 50px 0;
+  overflow-x: hidden;
+}
+
 </style>

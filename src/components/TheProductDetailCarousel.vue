@@ -1,36 +1,92 @@
 <template>
-  <div id="container">
-    <div id="container-img" :style="{ transform: 'translateX(' + this.currentPosition + 'px)', transition: this.transition }">
+    <div
+      id="container-img"
+      :style="{
+        transform: 'translateX(' + this.currentPosition + 'px)',
+        transition: this.transition
+      }"
+    >
       <div class="slide-container">
-        <img src="@/assets/coussin.png" :style="{ transition: this.transition }" :class="{ active: currentSlide == 0, display: currentSlide > 1 }"/>
+        <img
+          src="@/assets/coussin.png"
+          :style="{ transition: this.transition }"
+          :class="{
+            active: currentSlide == 0,
+            hidden: currentSlide > 1
+          }"
+        />
       </div>
       <div class="slide-container">
-        <img src="@/assets/cravate.png" :style="{ transition: this.transition }" :class="{ active: currentSlide == 1, display: currentSlide > 2 }"/>
+        <img
+          src="@/assets/cravate.png"
+          :style="{ transition: this.transition }"
+          :class="{
+            active: currentSlide == 1,
+            hidden: currentSlide > 2
+          }"
+        />
       </div>
       <div class="slide-container">
-        <img src="@/assets/bouillote.png" :style="{ transition: this.transition }" :class="{ active: currentSlide == 2, display: currentSlide > 3 }"/>
+        <img
+          src="@/assets/bouillote.png"
+          :style="{ transition: this.transition }"
+          :class="{
+            active: currentSlide == 2,
+            hidden: currentSlide > 3
+          }"
+        />
       </div>
       <div class="slide-container">
-        <img src="@/assets/coussin.png" :style="{ transition: this.transition }" :class="{ active: currentSlide == 3, display: (currentSlide > 4 || currentSlide < 2) }"/>
+        <img
+          src="@/assets/coussin.png"
+          :style="{ transition: this.transition }"
+          :class="{
+            active: currentSlide == 3,
+            hidden: (currentSlide > 4 || currentSlide < 2)
+          }"
+        />
       </div>
       <div class="slide-container">
-        <img src="@/assets/cravate.png" :style="{ transition: this.transition }" :class="{ active: currentSlide == 4, display: currentSlide < 3 }"/>
+        <img
+          src="@/assets/cravate.png"
+          :style="{ transition: this.transition }"
+          :class="{
+            active: currentSlide == 4,
+            hidden: currentSlide < 3
+          }"
+        />
       </div>
       <div class="slide-container">
-        <img src="@/assets/bouillote.png" :style="{ transition: this.transition }" :class="{ active: currentSlide == 5, display: currentSlide < 4 }"/>
+        <img
+          src="@/assets/bouillote.png"
+          :style="{ transition: this.transition }"
+          :class="{
+            active: currentSlide == 5,
+            hidden: currentSlide < 4
+          }"
+        />
       </div>
       <div class="slide-container">
-        <img src="@/assets/coussin.png" :style="{ transition: this.transition }" :class="{ active: currentSlide == 6, display: currentSlide < 5 }"/>
+        <img
+          src="@/assets/coussin.png"
+          :style="{ transition: this.transition }"
+          :class="{
+            active: currentSlide == 6,
+            hidden: currentSlide < 5
+          }"
+        />
       </div>
-      <div id="arrows" :style="{ transform: 'translateX(' + (this.currentPosition * -1) + 'px)', transition: this.transition }">
+      <div
+        id="arrows"
+        :style="{
+          transform: 'translateX(' + (-this.currentPosition) + 'px)',
+          transition: this.transition
+        }"
+      >
         <img src="@/assets/left.png" @click="updateCurrentSlide(-1)"/>
         <img src="@/assets/right.png" @click="updateCurrentSlide(1)"/>
       </div>
     </div>
-    <div id="description">
-
-    </div>
-  </div>
 </template>
 <script>
 export default {
@@ -63,19 +119,24 @@ export default {
           this.currentPosition -= 1260;
           this.currentSlide += 3;
           this.slide = false;
+
+          // Reset the loop
           setTimeout(() => {
             this.transition = '0.35s';
             this.currentPosition += 420;
             this.currentSlide -= 1;
           }, 0);
-        } else if (this.currentSlide + positionUpdate > 5) {
+        }
+        else if (this.currentSlide + positionUpdate > 5) {
           this.currentSlide = 1;
           this.currentPosition = 840;
-        } else {
+        }
+        else {
           this.currentSlide += positionUpdate;
           this.currentPosition -= 420 * positionUpdate;
         }
 
+        // Reset the loop with next button
         if (this.currentSlide >= 4 && this.slide) {
           setTimeout(() => {
             this.transition = '0s';
@@ -84,6 +145,7 @@ export default {
           }, 350)
         }
 
+        // Reset the loop with previous button
         if (this.currentSlide <= 1 && this.slide) {
           setTimeout(() => {
             this.transition = '0s';
@@ -91,32 +153,20 @@ export default {
             this.currentPosition -= 1260;
           }, 350)
         }
+
+        // Disable slide for 350 ms to avoid animation issue
         this.slide = false;
-
         setTimeout(() => this.slide = true, 350);
-
-        console.log(this.currentPosition);
-        console.log(this.currentSlide);
       }
     }
   },
 }
 </script>
 <style>
-#container {
-  display: block;
-  position: relative;
-  background: white;
-  padding: 50px 0;
-  overflow-x: hidden;
-  height: 500px;
-}
-
 #container-img {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  box-sizing: border-box;
 }
 
 .slide-container {
@@ -137,7 +187,7 @@ export default {
   mask-image: linear-gradient(to left, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.2));
 }
 
-#container-img .display {
+#container-img .hidden {
   opacity: 0;
   width: 150px;
   height: 150px;
@@ -170,6 +220,7 @@ export default {
   mask-image: none;
   background-color: rgba(255, 255, 255, 0.6);
   cursor: pointer;
+  margin: auto 10px;
 }
 
 #description {

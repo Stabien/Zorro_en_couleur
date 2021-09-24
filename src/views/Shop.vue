@@ -14,24 +14,25 @@
     <main>
     <section id="filters">
       <span
-        v-for="(element, index) in filters"
+        v-for="(item, index) in filters"
         :key="index"
-        @click="updateFilters(element)"
-        :class="{ active : element == currentFilter }"
+        @click="updateFilters(item)"
+        :class="{ active : item == currentFilter }"
       >
-        {{ element }}
+        {{ item }}
       </span>
     </section>
     <section id="products">
       <h2>Nos produits</h2>
       <div id="product-items-container">
         <Product
-          v-for="element in products"
-          :key="element.id"
-          :data="element"
-          :class="{ hidden :
+          v-for="item in products"
+          :key="item.id"
+          :data="item"
+          :class="{
+            hidden :
             currentFilter != 'TOUS' &&
-            currentFilter != element.category.toUpperCase()
+            currentFilter != item.category.toUpperCase()
           }"
         />
       </div>

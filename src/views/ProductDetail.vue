@@ -11,17 +11,28 @@
       </p>
     </div>
   </div>
+  <main>
+    <div id="cloths">
+      <ClothToChoose
+        v-for="item in cloths"
+        :data="item"
+        :key="item.id"
+      />
+    </div>
+  </main>
 </template>
 <script>
 import Navigation from '../components/Navigation.vue'
 import TheProductDetailCarousel from '../components/TheProductDetailCarousel.vue'
+import ClothToChoose from '../components/ClothToChoose.vue'
 import { useRoute } from 'vue-router'
 
 export default {
   name: 'ProductDetail',
   components: {
     Navigation,
-    TheProductDetailCarousel
+    TheProductDetailCarousel,
+    ClothToChoose
   },
   computed: {
     productName() {
@@ -32,6 +43,9 @@ export default {
         if (item.name == this.productName)
           return item;
       return {};
+    },
+    cloths() {
+      return this.$store.getters.getCloths;
     }
   }
 }
@@ -55,5 +69,17 @@ h1 {
   width: 70%;
   margin: auto;
   margin-top: 60px;
+}
+
+main {
+  width: 70%;
+  margin: auto;
+}
+
+#cloths {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 </style>

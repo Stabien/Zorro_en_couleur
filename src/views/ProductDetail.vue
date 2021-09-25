@@ -17,6 +17,8 @@
         v-for="item in cloths"
         :data="item"
         :key="item.id"
+        @click="updateSelectedCloth(item.id)"
+        :selectedCloth="selectedCloth"
       />
     </div>
   </main>
@@ -33,6 +35,14 @@ export default {
     Navigation,
     TheProductDetailCarousel,
     ClothToChoose
+  },
+  data: () => ({
+    selectedCloth: -1
+  }),
+  methods: {
+    updateSelectedCloth(id) {
+      this.selectedCloth = id;
+    }
   },
   computed: {
     productName() {

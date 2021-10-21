@@ -40,7 +40,7 @@ export default {
   padding: 15px;
   padding-bottom: 5px;
   background: white;
-  margin: 50px auto;
+  margin: 50px 20px;
   margin-left: 0;
   border-radius: 20px;
   border: 1px solid #EAEBEE;
@@ -57,6 +57,6 @@ export default {
 .selected {
   padding: 11px;
   padding-bottom: 1px;
-  border: 5px solid blue;
+  border: 5px solid #3CAAB1;
 }
 </style>

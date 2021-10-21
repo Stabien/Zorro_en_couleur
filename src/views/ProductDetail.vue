@@ -12,6 +12,7 @@
     </div>
   </div>
   <main>
+    <h2>ETAPE 1 - CHOISI TON TISSU :</h2>
     <div id="cloths">
       <ClothToChoose
         v-for="item in cloths"
@@ -21,12 +22,18 @@
         :selectedCloth="selectedCloth"
       />
     </div>
+    <h2>ETAPE 2 - C'EST TOUT BON POUR TOI ?</h2>
+    <CommandSummary
+      :productName="productName"
+      :selectedCloth="selectedCloth"
+    />
   </main>
 </template>
 <script>
 import Navigation from '../components/Navigation.vue'
 import TheProductDetailCarousel from '../components/TheProductDetailCarousel.vue'
 import ClothToChoose from '../components/ClothToChoose.vue'
+import CommandSummary from '../components/CommandSummary.vue'
 import { useRoute } from 'vue-router'
 
 export default {
@@ -34,7 +41,8 @@ export default {
   components: {
     Navigation,
     TheProductDetailCarousel,
-    ClothToChoose
+    ClothToChoose,
+    CommandSummary
   },
   data: () => ({
     selectedCloth: -1
@@ -84,6 +92,13 @@ h1 {
 main {
   width: 70%;
   margin: auto;
+}
+
+h2 {
+  margin-top: 60px;
+  font-weight: 400;
+  font-size: 24px;
+  margin-bottom: 0;
 }
 
 #cloths {

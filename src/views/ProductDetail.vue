@@ -27,6 +27,8 @@
       :productName="productName"
       :selectedCloth="selectedCloth"
     />
+    <h3>{{ currentProduct.price }},00 € <span>/ l'unité</span></h3>
+    <button>Ajouter au panier</button>
   </main>
 </template>
 <script>
@@ -106,5 +108,28 @@ h2 {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
+}
+
+h3 {
+  margin-top: 80px;
+  margin-bottom: 20px;
+  font-size: 42px;
+  font-weight: 600;
+  color: #373F41;
+}
+
+h3 span {
+  font-size: 18px;
+}
+
+button {
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 30px;
+  background: #3CAAB1;
+  color: white;
+  padding: 15px 40px;
+  font-size: 15px;
+  cursor: pointer;
 }
 </style>

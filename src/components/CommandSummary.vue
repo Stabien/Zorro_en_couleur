@@ -51,6 +51,7 @@ export default {
   font-weight: 400;
   font-size: 22px;
   overflow-wrap: break-word;
+  margin: 0 auto;
 }
 
 .info-container {
@@ -58,11 +59,13 @@ export default {
   flex-direction: row;
   justify-content: space-between;
   flex: 1;
+  margin: 30px auto;
 }
 
 .info-container span {
   display: block;
   margin: auto 20px;
+  margin-bottom: 7px;
   border-bottom: 1px dashed black;
   flex: 3;
 }

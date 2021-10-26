@@ -66,14 +66,13 @@ export default {
   methods: {
     updateSelectedCloth(id) {
       this.selectedCloth = id;
+      this.displayErrorMessage = false;
     },
     displayPopup() {
-      if (this.selectedCloth != -1) {
+      if (this.selectedCloth != -1)
         this.isPopupVisible = true;
-        this.displayErrorMessage = false;
-      } else {
+      else
         this.displayErrorMessage = true;
-      }
     },
     hidePopup() {
       this.isPopupVisible = false;
@@ -165,7 +164,7 @@ button {
 
 #error-message {
   color: red;
-  margin: 8px 0;
+  margin: 5px 0;
   font-size: 18px;
 }
 </style>

@@ -28,8 +28,11 @@
       :selectedCloth="selectedCloth"
     />
     <h3>{{ currentProduct.price }},00 € <span>/ l'unité</span></h3>
-    <button>Ajouter au panier</button>
-    <TheAddedToCartPopup/>
+    <button @click="displayPopup()">Ajouter au panier</button>
+    <TheAddedToCartPopup
+      v-if="isPopupVisible"
+      @hide="hidePopup()"
+    />
   </main>
 </template>
 <script>
@@ -50,11 +53,18 @@ export default {
     TheAddedToCartPopup
   },
   data: () => ({
-    selectedCloth: -1
+    selectedCloth: -1,
+    isPopupVisible: false
   }),
   methods: {
     updateSelectedCloth(id) {
       this.selectedCloth = id;
+    },
+    displayPopup() {
+      this.isPopupVisible = true;
+    },
+    hidePopup() {
+      this.isPopupVisible = false;
     }
   },
   computed: {

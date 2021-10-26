@@ -6,15 +6,24 @@
         <p>Super ! ton produit personnalisé vient d'être ajouté au panier.</p>
       </div>
       <div id="buttons">
-        <button id="close">Attend, j'en veux plus</button>
-        <button id="go-to-cart">Voir mon panier</button>
+        <button id="close" @click="hidePopup()">
+          Attend, j'en veux plus
+        </button>
+        <button id="go-to-cart" @click="hidePopup()">
+          Voir mon panier
+        </button>
       </div>
     </div>
   </div>
 </template>
 <script>
 export default {
-  name: 'TheAddedToCartPopup'
+  name: 'TheAddedToCartPopup',
+  methods: {
+    hidePopup() {
+      this.$emit('hide')
+    }
+  }
 }
 </script>
 <style>

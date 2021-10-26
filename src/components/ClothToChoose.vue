@@ -40,8 +40,7 @@ export default {
   padding: 15px;
   padding-bottom: 5px;
   background: white;
-  margin: 50px 20px;
-  margin-left: 0;
+  margin: 50px 0;
   border-radius: 20px;
   border: 1px solid #EAEBEE;
   cursor: pointer;

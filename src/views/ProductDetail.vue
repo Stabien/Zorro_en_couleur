@@ -29,6 +29,12 @@
     />
     <h3>{{ currentProduct.price }},00 € <span>/ l'unité</span></h3>
     <button @click="displayPopup()">Ajouter au panier</button>
+    <span
+      id="error-message"
+      v-if="displayErrorMessage"
+    >
+      Tu n’as pas sélectionné le tissu dans lequel tu souhaites voir fabriqué ton produit.
+    </span>
     <TheAddedToCartPopup
       v-if="isPopupVisible"
       @hide="hidePopup()"
@@ -54,14 +60,20 @@ export default {
   },
   data: () => ({
     selectedCloth: -1,
-    isPopupVisible: false
+    isPopupVisible: false,
+    displayErrorMessage: false
   }),
   methods: {
     updateSelectedCloth(id) {
       this.selectedCloth = id;
     },
     displayPopup() {
-      this.isPopupVisible = true;
+      if (this.selectedCloth != -1) {
+        this.isPopupVisible = true;
+        this.displayErrorMessage = false;
+      } else {
+        this.displayErrorMessage = true;
+      }
     },
     hidePopup() {
       this.isPopupVisible = false;
@@ -107,6 +119,9 @@ h1 {
 main {
   width: 70%;
   margin: auto;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 50px;
 }
 
 h2 {
@@ -121,6 +136,7 @@ h2 {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
+  gap: 20px;
 }
 
 h3 {
@@ -144,5 +160,12 @@ button {
   padding: 15px 40px;
   font-size: 15px;
   cursor: pointer;
+  width: fit-content;
+}
+
+#error-message {
+  color: red;
+  margin: 8px 0;
+  font-size: 18px;
 }
 </style>

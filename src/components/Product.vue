@@ -37,8 +37,7 @@ export default {
   width: 285px;
   text-decoration: none;
   color: black;
-  margin: 20px 10px;
-  margin-left: 0;
+  margin: 20px 0;
 }
 
 .product img {

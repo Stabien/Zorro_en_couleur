@@ -21,7 +21,7 @@ export default {
   name: 'TheAddedToCartPopup',
   methods: {
     hidePopup() {
-      this.$emit('hide')
+      this.$emit('hide');
     }
   }
 }

@@ -41,6 +41,7 @@ export default {
 </script>
 <style scoped>
 #summary {
+  width: calc(100% - 140px);
   margin: 40px auto;
   padding: 45px 70px;
   border-radius: 10px;

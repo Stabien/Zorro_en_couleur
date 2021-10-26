@@ -29,6 +29,7 @@
     />
     <h3>{{ currentProduct.price }},00 € <span>/ l'unité</span></h3>
     <button>Ajouter au panier</button>
+    <TheAddedToCartPopup/>
   </main>
 </template>
 <script>
@@ -36,6 +37,7 @@ import Navigation from '../components/Navigation.vue'
 import TheProductDetailCarousel from '../components/TheProductDetailCarousel.vue'
 import ClothToChoose from '../components/ClothToChoose.vue'
 import CommandSummary from '../components/CommandSummary.vue'
+import TheAddedToCartPopup from '../components/TheAddedToCartPopup.vue'
 import { useRoute } from 'vue-router'
 
 export default {
@@ -44,7 +46,8 @@ export default {
     Navigation,
     TheProductDetailCarousel,
     ClothToChoose,
-    CommandSummary
+    CommandSummary,
+    TheAddedToCartPopup
   },
   data: () => ({
     selectedCloth: -1

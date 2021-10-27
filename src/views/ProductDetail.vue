@@ -1,5 +1,10 @@
 <template>
   <Navigation/>
+  <ClothDetail
+    v-if="displayClothDetail"
+    :currentCloth="currentClothDetailData"
+    @hideClothDetail="hideClothDetail"
+  />
   <h1>{{ productName }}</h1>
   <div id="product-presentation">
     <TheProductDetailCarousel :data="currentProduct.photo"/>
@@ -18,8 +23,9 @@
         v-for="item in cloths"
         :data="item"
         :key="item.id"
-        @click="updateSelectedCloth(item.id)"
         :selectedCloth="selectedCloth"
+        @click="updateSelectedCloth(item.id)"
+        @displayClothDetail="clothDetailData"
       />
     </div>
     <h2>ETAPE 2 - C'EST TOUT BON POUR TOI ?</h2>
@@ -47,6 +53,7 @@ import TheProductDetailCarousel from '../components/TheProductDetailCarousel.vue
 import ClothToChoose from '../components/ClothToChoose.vue'
 import CommandSummary from '../components/CommandSummary.vue'
 import TheAddedToCartPopup from '../components/TheAddedToCartPopup.vue'
+import ClothDetail from '../components/ClothDetail.vue'
 import { useRoute } from 'vue-router'
 
 export default {
@@ -56,12 +63,15 @@ export default {
     TheProductDetailCarousel,
     ClothToChoose,
     CommandSummary,
-    TheAddedToCartPopup
+    TheAddedToCartPopup,
+    ClothDetail
   },
   data: () => ({
     selectedCloth: -1,
     isPopupVisible: false,
-    displayErrorMessage: false
+    displayErrorMessage: false,
+    displayClothDetail: false,
+    currentClothDetailData: {}
   }),
   methods: {
     updateSelectedCloth(id) {
@@ -76,6 +86,14 @@ export default {
     },
     hidePopup() {
       this.isPopupVisible = false;
+    },
+    clothDetailData(data) {
+      this.displayClothDetail = true;
+      this.currentClothDetailData = data;
+    },
+    hideClothDetail() {
+      this.displayClothDetail = false;
+      console.log('test');
     }
   },
   computed: {

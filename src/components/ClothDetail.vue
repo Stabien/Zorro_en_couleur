@@ -1,5 +1,5 @@
 <template>
-  <div v-if="$store.getters.getClothDetailVisibility" id="cloth-detail-container">
+  <div id="cloth-detail-container">
     <div @click="hideClothDetail" id="background"></div>
     <div id="cloth-detail">
       <img :src="getImgUrl(currentCloth.photo)">
@@ -31,7 +31,7 @@ export default {
   }),
   methods: {
     hideClothDetail() {
-      this.$store.commit('updateClothDetail', { clothId: 0, visibility: false });
+      this.$emit('hideClothDetail');
     },
     getImgUrl(path) {
       return require('@/' + path);
@@ -78,6 +78,7 @@ export default {
   background: white;
   padding: 35px;
   width: auto;
+  z-index: 1000;
 }
 
 #cloth-detail img {

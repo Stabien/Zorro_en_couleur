@@ -3,8 +3,15 @@
     class="cloth"
     :class="{ selected: selectedCloth == data.id }"
   >
-    <img :src="getImgUrl(data.photo)"/>
-    <h2>{{ data.nickname.toUpperCase() }}</h2>
+  <div class="image-container">
+    <img class="photo" :src="getImgUrl(data.photo)"/>
+    <img
+      class="eye-icon"
+      src="@/assets/eye_icon.png"
+      @click.stop="displayProductDetail"
+    />
+  </div>
+  <h2>{{ data.nickname.toUpperCase() }}</h2>
   </div>
 </template>
 <script>
@@ -26,15 +33,13 @@ export default {
         return require('@/' + path);
       return null;
     },
+    displayProductDetail() {
+      this.$emit('displayClothDetail', this.data);
+    }
   }
 }
 </script>
 <style scoped>
-.cloth img {
-  width: 190px;
-  height: 190px;
-  border-radius: 20px;
-}
 
 .cloth {
   padding: 15px;
@@ -44,6 +49,30 @@ export default {
   border-radius: 20px;
   border: 1px solid #EAEBEE;
   cursor: pointer;
+}
+
+.cloth:hover .eye-icon {
+  opacity: 1;
+}
+
+.image-container {
+  position: relative;
+}
+
+.photo {
+  width: 190px;
+  height: 190px;
+  border-radius: 20px;
+}
+
+.eye-icon {
+  opacity: 0;
+  width: 45px;
+  height: 45px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  transition: 0.2s;
 }
 
 .cloth h2 {

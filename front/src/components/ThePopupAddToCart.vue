@@ -18,7 +18,7 @@
 </template>
 <script>
 export default {
-  name: 'TheAddedToCartPopup',
+  name: 'ThePopupAddToCart',
   methods: {
     hidePopup() {
       this.$emit('hide');

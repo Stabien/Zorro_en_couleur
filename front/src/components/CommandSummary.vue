@@ -16,6 +16,7 @@
     </div>
   </div>
 </template>
+
 <script>
 export default {
   name: 'CommandSummary',
@@ -26,19 +27,20 @@ export default {
     },
     selectedCloth: {
       required: true,
-      type: Number
+      type: String
     }
   },
   computed: {
     getClothName() {
       for (let item of this.$store.getters.getCloths)
-        if (item.id == this.selectedCloth)
+        if (item.uuid == this.selectedCloth)
           return item.nickname;
       return '???';
     }
   }
 }
 </script>
+
 <style scoped>
 #summary {
   width: calc(100% - 140px);

@@ -1,13 +1,13 @@
 <template>
-  <a :href="'/boutique/' + data.name" class="product">
-    <img :src="getImgUrl(data.photo)"/>
+  <div @click="redirectToProductDetail" class="product">
+    <img :src="getImgUrl(data.picture)"/>
     <div class="product-infos">
       <span>{{ data.category.toUpperCase() }}</span>
       <h2>{{ data.name.toUpperCase() }}</h2>
       <p>A partir de</p>
       <h3>{{ data.price }},00 €</h3>
     </div>
-  </a>
+  </div>
 </template>
 
 <script>
@@ -22,6 +22,9 @@ export default {
   methods: {
     getImgUrl(path) {
       return require('@/' + path);
+    },
+    redirectToProductDetail() {
+      this.$router.push({ path: `/boutique/${this.data.name.toLowerCase()}`, query: { uuid: this.data.uuid } });
     }
   }
 }

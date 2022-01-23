@@ -1,10 +1,10 @@
 <template>
   <div
     class="cloth"
-    :class="{ selected: selectedCloth == data.id }"
+    :class="{ selected: selectedCloth == data.uuid }"
   >
   <div class="image-container">
-    <img class="photo" :src="getImgUrl(data.photo)"/>
+    <img class="photo" :src="getImgUrl(data.picture)"/>
     <img
       class="eye-icon"
       src="@/assets/eye_icon.png"
@@ -24,7 +24,7 @@ export default {
     },
     selectedCloth: {
       required: true,
-      type: Number
+      type: String
     }
   },
   methods: {
@@ -72,7 +72,6 @@ export default {
   position: absolute;
   top: 10px;
   right: 10px;
-  transition: 0.2s;
 }
 
 .cloth h2 {

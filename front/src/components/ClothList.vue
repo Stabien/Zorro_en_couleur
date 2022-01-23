@@ -1,7 +1,7 @@
 <template>
   <div id="cloth-list">
     <div v-for="item in cloths" :key="item" :id="item.id" class="item">
-      <img :src="getImgUrl(item.photo)" @click="displayClothDetail(item.id)">
+      <img :src="getImgUrl(item.image)" @click="displayClothDetail(item.id)">
       <h3>{{ item.nickname }}</h3>
     </div>
   </div>

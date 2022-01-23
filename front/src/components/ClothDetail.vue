@@ -2,16 +2,12 @@
   <div id="cloth-detail-container">
     <div @click="hideClothDetail" id="background"></div>
     <div id="cloth-detail">
-      <img :src="getImgUrl(currentCloth.photo)">
+      <img :src="getImgUrl(currentCloth.picture)">
       <div id="description">
         <h2>{{ currentCloth.nickname }}</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
            ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
         <h4>Composition : 100% {{ currentCloth.material }}</h4>
-        <h3>Disponible pour : </h3>
-        <ul>
-          <li v-for="item in getProductsNameForOneCategory(currentCloth.categoryId)" :key="item">{{ item }}</li>
-        </ul>
       </div>
     </div>
   </div>
@@ -26,29 +22,13 @@ export default {
       required: true
     }
   },
-  data: () => ({
-    productsNameByCategory: []
-  }),
   methods: {
     hideClothDetail() {
       this.$emit('hideClothDetail');
     },
     getImgUrl(path) {
       return require('@/' + path);
-    },
-    getProductsNameForOneCategory(id) {
-      let currentCategory = [];
-      for (let i in this.productsNameByCategory) {
-        if (this.productsNameByCategory[i].id == id)
-          currentCategory.push(this.productsNameByCategory[i].name);
-      }
-      return currentCategory;
     }
-  },
-  mounted() {
-    fetch('http://localhost:4000/api/productsNameByCategory')
-      .then(response => response.json())
-      .then(response => this.productsNameByCategory = response.recordset);
   }
 }
 </script>

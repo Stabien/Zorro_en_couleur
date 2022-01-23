@@ -1,58 +1,60 @@
 <template>
   <Navigation/>
-  <ClothDetail
-    v-if="displayClothDetail"
-    :currentCloth="currentClothDetailData"
-    @hideClothDetail="hideClothDetail"
-  />
-  <h1>{{ productName }}</h1>
-  <div id="product-presentation">
-    <TheProductDetailCarousel :data="currentProduct.photo"/>
-    <div id="description">
-      <p>
-        La trousse est conçue avec deux tissus de votre choix, pour l’intérieur et l’extérieur.
-        Parce que nous on pense que le principal, c’est ce qu’il y a à l’intérieur.
-        blablabka textete xtefeuue Disponible en deux tailles.
-      </p>
-    </div>
-  </div>
-  <main>
-    <h2>ETAPE 1 - CHOISI TON TISSU :</h2>
-    <div id="cloths">
-      <ClothToChoose
-        v-for="item in cloths"
-        :data="item"
-        :key="item.id"
-        :selectedCloth="selectedCloth"
-        @click="updateSelectedCloth(item.id)"
-        @displayClothDetail="clothDetailData"
-      />
-    </div>
-    <h2>ETAPE 2 - C'EST TOUT BON POUR TOI ?</h2>
-    <CommandSummary
-      :productName="productName"
-      :selectedCloth="selectedCloth"
+  <div v-if="currentProduct">
+    <ClothDetail
+      v-if="displayClothDetail"
+      :currentCloth="currentClothDetailData"
+      @hideClothDetail="hideClothDetail"
     />
-    <h3>{{ currentProduct.price }},00 € <span>/ l'unité</span></h3>
-    <button @click="displayPopup()">Ajouter au panier</button>
-    <span
-      id="error-message"
-      v-if="displayErrorMessage"
-    >
+    <h1>{{ currentProduct.name }}</h1>
+    <div id="product-presentation">
+      <TheProductDetailCarousel :data="currentProduct.picture"/>
+      <div id="description">
+        <p>
+          La trousse est conçue avec deux tissus de votre choix, pour l’intérieur et l’extérieur.
+          Parce que nous on pense que le principal, c’est ce qu’il y a à l’intérieur.
+          blablabka textete xtefeuue Disponible en deux tailles.
+        </p>
+      </div>
+    </div>
+    <main>
+      <h2>ETAPE 1 - CHOISI TON TISSU :</h2>
+      <div id="cloths">
+        <ClothToChoose
+          v-for="cloth in cloths"
+          :data="cloth"
+          :key="cloth.uuid"
+          :selectedCloth="selectedCloth"
+          @click="updateSelectedCloth(cloth.uuid)"
+          @displayClothDetail="clothDetailData"
+        />
+      </div>
+      <h2>ETAPE 2 - C'EST TOUT BON POUR TOI ?</h2>
+      <CommandSummary
+        :productName="currentProduct.name"
+        :selectedCloth="selectedCloth"
+      />
+      <h3>{{ currentProduct.price }},00 € <span>/ l'unité</span></h3>
+      <button @click="displayPopup()">Ajouter au panier</button>
+      <span
+        id="error-message"
+        v-if="displayErrorMessage"
+      >
       Tu n’as pas sélectionné le tissu dans lequel tu souhaites voir fabriqué ton produit.
     </span>
-    <TheAddedToCartPopup
-      v-if="isPopupVisible"
-      @hide="hidePopup()"
-    />
-  </main>
+      <TheAddedToCartPopup
+        v-if="isPopupVisible"
+        @hide="hidePopup()"
+      />
+    </main>
+  </div>
 </template>
 <script>
 import Navigation from '../components/Navigation.vue'
 import TheProductDetailCarousel from '../components/TheProductDetailCarousel.vue'
 import ClothToChoose from '../components/ClothToChoose.vue'
 import CommandSummary from '../components/CommandSummary.vue'
-import TheAddedToCartPopup from '../components/TheAddedToCartPopup.vue'
+import TheAddedToCartPopup from '../components/ThePopupAddToCart.vue'
 import ClothDetail from '../components/ClothDetail.vue'
 import { useRoute } from 'vue-router'
 
@@ -67,22 +69,19 @@ export default {
     ClothDetail
   },
   data: () => ({
-    selectedCloth: -1,
+    selectedCloth: '',
     isPopupVisible: false,
     displayErrorMessage: false,
     displayClothDetail: false,
     currentClothDetailData: {}
   }),
   methods: {
-    updateSelectedCloth(id) {
-      this.selectedCloth = id;
+    updateSelectedCloth(uuid) {
+      this.selectedCloth = uuid;
       this.displayErrorMessage = false;
     },
     displayPopup() {
-      if (this.selectedCloth != -1)
-        this.isPopupVisible = true;
-      else
-        this.displayErrorMessage = true;
+      this.selectedCloth != '' ? this.isPopupVisible = true : this.displayErrorMessage = true;
     },
     hidePopup() {
       this.isPopupVisible = false;
@@ -93,18 +92,23 @@ export default {
     },
     hideClothDetail() {
       this.displayClothDetail = false;
-      console.log('test');
     }
   },
   computed: {
-    productName() {
-      return useRoute().path.split('/')[2];
+    productUUID() {
+      const url = '?' + useRoute().fullPath.split('?')[1];
+      console.log(url);
+      const urlParams = new URLSearchParams(url);
+      const uuid = urlParams.get('uuid');
+      console.log(uuid);
+
+      return uuid;
     },
     currentProduct() {
       for (const item of this.$store.getters.getProducts)
-        if (item.name == this.productName)
+        if (item.uuid == this.productUUID)
           return item;
-      return {};
+      return null;
     },
     cloths() {
       return this.$store.getters.getCloths;

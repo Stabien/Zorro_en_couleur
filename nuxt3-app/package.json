@@ -15,5 +15,13 @@
     "@pinia/nuxt": "^0.1.8",
     "pinia": "^2.0.13",
     "prettier": "^2.6.2"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "semi": false,
+    "singleQuote": true,
+    "jsxSingleQuote": false,
+    "tabWidth": 2,
+    "useTabs": false
   }
 }

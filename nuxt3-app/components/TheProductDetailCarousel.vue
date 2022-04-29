@@ -8,7 +8,7 @@
     >
       <div class="slide-container">
         <img
-          src="@/assets/coussin.png"
+          src="~/assets/coussin.png"
           :style="{ transition: this.transition }"
           :class="{
             active: currentSlide == 0,
@@ -19,7 +19,7 @@
       </div>
       <div class="slide-container">
         <img
-          src="@/assets/cravate.png"
+          src="~/assets/cravate.png"
           :style="{ transition: this.transition }"
           :class="{
             active: currentSlide == 1,
@@ -30,7 +30,7 @@
       </div>
       <div class="slide-container">
         <img
-          src="@/assets/bouillote.png"
+          src="~/assets/bouillote.png"
           :style="{ transition: this.transition }"
           :class="{
             active: currentSlide == 2,
@@ -42,7 +42,7 @@
       </div>
       <div class="slide-container">
         <img
-          src="@/assets/coussin.png"
+          src="~/assets/coussin.png"
           :style="{ transition: this.transition }"
           :class="{
             active: currentSlide == 3,
@@ -54,7 +54,7 @@
       </div>
       <div class="slide-container">
         <img
-          src="@/assets/cravate.png"
+          src="~/assets/cravate.png"
           :style="{ transition: this.transition }"
           :class="{
             active: currentSlide == 4,
@@ -66,7 +66,7 @@
       </div>
       <div class="slide-container">
         <img
-          src="@/assets/bouillote.png"
+          src="~/assets/bouillote.png"
           :style="{ transition: this.transition }"
           :class="{
             active: currentSlide == 5,
@@ -77,7 +77,7 @@
       </div>
       <div class="slide-container">
         <img
-          src="@/assets/coussin.png"
+          src="~/assets/coussin.png"
           :style="{ transition: this.transition }"
           :class="{
             active: currentSlide == 6,
@@ -93,8 +93,8 @@
           transition: this.transition
         }"
       >
-        <img src="@/assets/left.png" @click="updateCurrentSlide(-1)"/>
-        <img src="@/assets/right.png" @click="updateCurrentSlide(1)"/>
+        <img src="~/assets/left.png" @click="updateCurrentSlide(-1)"/>
+        <img src="~/assets/right.png" @click="updateCurrentSlide(1)"/>
       </div>
     </div>
 </template>
@@ -229,12 +229,9 @@ export default {
 
 #arrows img {
   display: block;
-  width: 18px;
-  height: 18px;
   padding: 14px;
   border-radius: 50px;
   opacity: 1;
-  mask-image: none;
   background-color: rgba(255, 255, 255, 0.6);
   cursor: pointer;
   margin: auto 10px;

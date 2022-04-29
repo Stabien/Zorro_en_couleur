@@ -1,14 +1,14 @@
 <script setup>
 import Product from '../../components/Product.vue'
-import { useStore } from '../../store';
-import { ref } from 'vue'
+import { useStore } from '../../store'
+import { ref, computed } from 'vue'
 
 const store = useStore()
 const filters = ['TOUS', 'MAISON', 'MODE']
 const currentFilter = ref('TOUS')
 
-const updateFilters = (filter) => currentFilter.value = filter;
-const products = ref(store.getProducts)
+const updateFilters = (filter) => (currentFilter.value = filter)
+const products = computed(() => store.getProducts)
 
 console.log('teeeest')
 </script>
@@ -19,36 +19,34 @@ console.log('teeeest')
       <div id="presentation">
         <h1>Optez pour un produit, choisissez votre tissu et c’est parti.</h1>
         <p>
-          Bienvenue dans la Boutique de Zorro en Couleur.<br>
-          Fiers de notre savoir faire, nous vous offrons la possibilité de choisir le produit
-          qu’il vous faut dans votre tissu préféré. Nous le fabriquons sur commande rien que
-          pour vos beaux yeux et vous le livrons directement à la maison !
+          Bienvenue dans la Boutique de Zorro en Couleur.<br />
+          Fiers de notre savoir faire, nous vous offrons la possibilité de choisir le produit qu’il vous faut dans votre
+          tissu préféré. Nous le fabriquons sur commande rien que pour vos beaux yeux et vous le livrons directement à
+          la maison !
         </p>
       </div>
     </header>
     <main>
       <section id="filters">
-      <span
+        <span
           v-for="(item, index) in filters"
           :key="index"
           @click="updateFilters(item)"
-          :class="{ active : item == currentFilter }"
-      >
-        {{ item }}
-      </span>
+          :class="{ active: item == currentFilter }"
+        >
+          {{ item }}
+        </span>
       </section>
       <section id="products">
         <h2>Nos produits</h2>
         <div id="product-items-container">
           <Product
-              v-for="item in products"
-              :key="item.uuid"
-              :data="item"
-              :class="{
-            hidden :
-            currentFilter != 'TOUS' &&
-            currentFilter != item.category.toUpperCase()
-          }"
+            v-for="item in products"
+            :key="item.uuid"
+            :data="item"
+            :class="{
+              hidden: currentFilter != 'TOUS' && currentFilter != item.category.toUpperCase(),
+            }"
           />
         </div>
       </section>
@@ -58,7 +56,7 @@ console.log('teeeest')
 
 <style scoped>
 body {
-  background: #F6F9FC;
+  background: #f6f9fc;
 }
 
 main,
@@ -92,7 +90,7 @@ main,
 
 #filters span:hover,
 #filters .active {
-  color: #3CAAB1;
+  color: #3caab1;
 }
 
 #products h2 {

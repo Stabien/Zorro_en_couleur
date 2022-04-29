@@ -1,12 +1,11 @@
 <script setup>
-import Filter from '../../components/Filter.vue'
 import ClothList from '../../components/ClothList.vue'
-import { useStore } from '../../store';
+import { computed } from 'vue'
+import { useStore } from '../../store'
 
 const store = useStore()
-const getClothsToDisplay = store.getClothsToDisplay;
-const getProducts = store.getProducts;
-
+const getClothsToDisplay = computed(() => store.getClothsToDisplay)
+const getProducts = computed(() => store.getProducts)
 </script>
 
 <template>
@@ -16,12 +15,12 @@ const getProducts = store.getProducts;
         <div id="description">
           <h2>Gallerie des tissus</h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-            laboris nisi ut aliquip ex ea commodo consequat, consectetur adipiscing elit.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat, consectetur adipiscing elit.
           </p>
         </div>
-        <ClothList :cloths="getClothsToDisplay"/>
+        <ClothList :cloths="getClothsToDisplay" />
       </section>
     </main>
   </div>

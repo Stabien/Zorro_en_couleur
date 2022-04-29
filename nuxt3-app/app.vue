@@ -1,21 +1,22 @@
 <script setup>
-import Layout from './layouts/Layout';
-import { useStore } from './store';
+import Layout from './layouts/Layout'
+import { useStore } from './store'
+import { onMounted } from 'vue'
+import { getCloths, getProducts } from './api'
 
 const store = useStore()
 
-fetch('http://localhost:4000/api/cloth')
-  .then(response => response.json())
-  .then(response => store.fillCloths(response));
-// API request to get all cloths
-fetch('http://localhost:4000/api/product')
-  .then(response => response.json())
-  .then(response => store.fillProducts(response));
+onMounted(async () => {
+  const cloths = await getCloths()
+  const products = await getProducts()
 
+  store.fillCloths(cloths)
+  store.fillProducts(products)
+})
 </script>
 
 <template>
   <div>
-    <Layout/>
+    <Layout />
   </div>
 </template>

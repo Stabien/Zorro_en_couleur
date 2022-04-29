@@ -1,11 +1,10 @@
 <script setup>
-import Navigation from '../components/Navigation';
-
+import Navigation from '../components/Navigation'
 </script>
 
 <template>
   <div>
-    <Navigation/>
-    <NuxtPage/>
+    <Navigation />
+    <NuxtPage />
   </div>
 </template>

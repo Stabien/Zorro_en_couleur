@@ -9,8 +9,6 @@ const currentFilter = ref('TOUS')
 
 const updateFilters = (filter) => (currentFilter.value = filter)
 const products = computed(() => store.getProducts)
-
-console.log('teeeest')
 </script>
 
 <template>

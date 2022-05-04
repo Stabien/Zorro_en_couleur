@@ -1,4 +1,28 @@
 <template>
+  <div class="invisible block lg:hidden p-4 flex flex-row justify-between md:relative">
+    <NuxtLink to="/" id="nav-logo" class="width-auto lg:w-1/5 container-side-nav-item">
+      <img src="@/assets/logo_nav.png" class="mx-auto lg:ml-5" />
+    </NuxtLink>
+    <div class="hidden lg:block" id="container-nav-menu">
+      <ul class="flex flex row">
+        <li v-for="item in routes" :key="item.name" :class="{ active: currentRoute === item.path }">
+          <NuxtLink :to="item.path">
+            {{ item.name }}
+            <span></span>
+          </NuxtLink>
+        </li>
+      </ul>
+    </div>
+    <div id="nav-right" class="flex flex-row justify-center width-auto mr-5 lg:w-1/5">
+      <div @click="toggleMenu" class="block ml-5 my-auto">
+        <img src="@/assets/menu_burger.png" class="w-6 h-6 md:w-10 md:h-10 lg:hidden" />
+      </div>
+      <NuxtLink to="" class="hidden mx-2 my-auto lg:block"
+        ><img class="w-6 h-6 md:w-10 md:h-10" src="@/assets/shopping-cart.png"
+      /></NuxtLink>
+      <NuxtLink class="hidden mx-2 lg:block" to="">Nous contacter</NuxtLink>
+    </div>
+  </div>
   <div class="fixed top-0 left-0 w-full lg:relative">
     <nav class="p-4 flex flex-row justify-between md:relative">
       <NuxtLink to="/" id="nav-logo" class="width-auto lg:w-1/5 container-side-nav-item">

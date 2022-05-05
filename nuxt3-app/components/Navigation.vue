@@ -26,7 +26,7 @@
   <div class="fixed top-0 left-0 w-full lg:relative">
     <nav class="p-4 flex flex-row justify-between md:relative">
       <NuxtLink to="/" id="nav-logo" class="width-auto lg:w-1/5 container-side-nav-item">
-        <img src="@/assets/logo_nav.png" class="mx-auto lg:ml-5" />
+        <img src="@/assets/logo_nav.png" class="mx-auto w-14 h-14 md:w-24 md:h-24 lg:ml-5" />
       </NuxtLink>
       <div class="hidden lg:block" id="container-nav-menu">
         <ul class="flex flex row">
@@ -40,7 +40,7 @@
       </div>
       <div id="nav-right" class="flex flex-row justify-center width-auto mr-5 lg:w-1/5">
         <div @click="toggleMenu" class="block ml-5 my-auto">
-          <img src="@/assets/menu_burger.png" class="w-6 h-6 md:w-10 md:h-10 lg:hidden" />
+          <img src="@/assets/menu_burger.png" class="w-6 h-6 md:w-8 md:h-8 lg:hidden" />
         </div>
         <NuxtLink to="" class="hidden mx-2 my-auto lg:block"
           ><img class="w-6 h-6 md:w-10 md:h-10" src="@/assets/shopping-cart.png"

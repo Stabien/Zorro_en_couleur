@@ -1,53 +1,42 @@
 <template>
-  <div
-    class="cloth"
-    :class="{ selected: selectedCloth == data.uuid }"
-  >
-  <div class="image-container">
-    <img class="photo" :src="getImgUrl(data.picture)"/>
-    <img
-      class="eye-icon"
-      src="@/assets/eye_icon.png"
-      @click.stop="displayProductDetail"
-    />
-  </div>
-  <h2>{{ data.nickname.toUpperCase() }}</h2>
+  <div>
+    <ClothDetail v-if="isModalDisplayed" :current-cloth="cloth" @hide-modal="triggerModal" />
+    <div class="cloth" :class="{ selected: selectedCloth == cloth.uuid }" @click="triggerModalReadonly">
+      <div class="image-container">
+        <img class="photo" :src="getImgUrl(cloth.picture)" />
+        <img v-if="!readonly" class="eye-icon" src="@/assets/eye_icon.png" @click.stop="triggerModal" />
+      </div>
+      <h2>{{ cloth.nickname.toUpperCase() }}</h2>
+    </div>
   </div>
 </template>
-<script>
-export default {
-  name: 'ClothToChoose',
-  props: {
-    data: {
-      required: true,
-      type: Object
-    },
-    selectedCloth: {
-      required: true,
-      type: String
-    }
-  },
-  methods: {
-    getImgUrl(path) {
-      if (path)
-        return '../' + path;
-      return null;
-    },
-    displayProductDetail() {
-      this.$emit('displayClothDetail', this.data);
-    }
-  }
+<script setup>
+const props = defineProps({
+  cloth: Object,
+  selectedCloth: String,
+  readonly: Boolean,
+})
+
+const isModalDisplayed = ref(false)
+
+const triggerModal = () => (isModalDisplayed.value = !isModalDisplayed.value)
+
+const getImgUrl = (path) => {
+  if (path) return '../' + path
+  return null
+}
+const triggerModalReadonly = () => {
+  if (props.readonly) triggerModal()
 }
 </script>
 <style scoped>
-
 .cloth {
   padding: 15px;
   padding-bottom: 5px;
   background: white;
   margin: 50px 0;
   border-radius: 20px;
-  border: 1px solid #EAEBEE;
+  border: 1px solid #eaebee;
   cursor: pointer;
 }
 
@@ -84,6 +73,6 @@ export default {
 .selected {
   padding: 11px;
   padding-bottom: 1px;
-  border: 5px solid #3CAAB1;
+  border: 5px solid #3caab1;
 }
 </style>

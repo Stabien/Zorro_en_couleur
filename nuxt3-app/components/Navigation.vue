@@ -1,5 +1,5 @@
 <template>
-  <div class="invisible block lg:hidden p-4 flex flex-row justify-between md:relative">
+  <div class="z-50 invisible block lg:hidden p-4 flex flex-row justify-between md:relative">
     <NuxtLink to="/" id="nav-logo" class="width-auto lg:w-1/5 container-side-nav-item">
       <img src="@/assets/logo_nav.png" class="mx-auto lg:ml-5" />
     </NuxtLink>
@@ -23,7 +23,7 @@
       <NuxtLink class="hidden mx-2 lg:block" to="">Nous contacter</NuxtLink>
     </div>
   </div>
-  <div class="fixed top-0 left-0 w-full lg:relative">
+  <div class="z-50 fixed top-0 left-0 w-full lg:relative">
     <nav class="p-4 flex flex-row justify-between md:relative">
       <NuxtLink to="/" id="nav-logo" class="width-auto lg:w-1/5 container-side-nav-item">
         <img src="@/assets/logo_nav.png" class="mx-auto w-14 h-14 md:w-24 md:h-24 lg:ml-5" />
@@ -48,7 +48,7 @@
         <NuxtLink class="hidden mx-2 lg:block" to="">Nous contacter</NuxtLink>
       </div>
     </nav>
-    <nav v-if="isMenuToggled">
+    <nav class="block lg:hidden" v-if="isMenuToggled">
       <ul class="flex flex-col">
         <li v-for="item in routes" :key="item.name" :class="{ active: currentRoute === item.path }">
           <NuxtLink :to="item.path">

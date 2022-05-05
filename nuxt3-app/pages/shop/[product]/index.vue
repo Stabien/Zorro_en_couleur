@@ -61,7 +61,7 @@ const triggerModal = () => (isModalDisplayed.value = !isModalDisplayed.value)
       <div id="cloths">
         <ClothToChoose
           v-for="cloth in cloths"
-          :data="cloth"
+          :cloth="cloth"
           :key="cloth.uuid"
           :selectedCloth="selectedCloth"
           @click="updateSelectedCloth(cloth.uuid)"

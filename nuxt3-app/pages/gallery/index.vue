@@ -11,8 +11,8 @@ const getProducts = computed(() => store.getProducts)
 <template>
   <div>
     <main>
-      <section>
-        <div id="description">
+      <section class="ml-10 sm:ml-20 md:ml-30 lg:ml-40">
+        <div class="w-4/5 ml-0">
           <h2>Gallerie des tissus</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
@@ -20,30 +20,21 @@ const getProducts = computed(() => store.getProducts)
             ea commodo consequat, consectetur adipiscing elit.
           </p>
         </div>
-        <ClothList :cloths="getClothsToDisplay" />
+        <ClothList :cloths="getClothsToDisplay" readonly />
       </section>
     </main>
   </div>
 </template>
 
 <style scoped>
-#tab-name {
-  margin-left: 260px;
-}
-
 main {
   display: flex;
   flex-direction: row;
 }
 
 section {
-  margin-left: 100px;
   margin-top: 30px;
   width: 70%;
-}
-
-#description {
-  width: 80%;
 }
 
 #description h2 {

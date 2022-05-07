@@ -1,9 +1,8 @@
 <script setup>
 import TheProductDetailCarousel from '../../../components/TheProductDetailCarousel.vue'
-import ClothToChoose from '../../../components/ClothToChoose.vue'
+import ClothList from '../../../components/ClothList.vue'
 import CommandSummary from '../../../components/CommandSummary.vue'
 import TheAddedToCartPopup from '../../../components/ThePopupAddToCart.vue'
-import ClothDetail from '../../../components/ClothDetail.vue'
 import { useRoute } from 'vue-router'
 import { ref } from 'vue'
 import { useStore } from '../../../store'
@@ -13,10 +12,6 @@ const store = useStore()
 const selectedCloth = ref('')
 const isPopupVisible = ref(false)
 const displayErrorMessage = ref(false)
-const isModalDisplayed = ref(false)
-const currentClothDetailData = ref({})
-const cloths = ref(store.getCloths)
-
 const url = '?' + useRoute().fullPath.split('?')[1]
 const urlParams = new URLSearchParams(url)
 const uuid = urlParams.get('uuid')
@@ -34,17 +29,10 @@ const displayPopup = () => {
 const hidePopup = () => {
   isPopupVisible.value = false
 }
-const clothDetailData = (data) => {
-  isModalDisplayed.value = true
-  currentClothDetailData.value = data
-}
-
-const triggerModal = () => (isModalDisplayed.value = !isModalDisplayed.value)
 </script>
 
 <template>
   <div v-if="currentProduct">
-    <ClothDetail v-if="isModalDisplayed" :currentCloth="currentClothDetailData" @hide-modal="triggerModal" />
     <h1>{{ currentProduct.name }}</h1>
     <div id="product-presentation">
       <TheProductDetailCarousel :data="currentProduct.picture" />
@@ -59,14 +47,7 @@ const triggerModal = () => (isModalDisplayed.value = !isModalDisplayed.value)
     <main>
       <h2>ETAPE 1 - CHOISI TON TISSU :</h2>
       <div id="cloths">
-        <ClothToChoose
-          v-for="cloth in cloths"
-          :cloth="cloth"
-          :key="cloth.uuid"
-          :selectedCloth="selectedCloth"
-          @click="updateSelectedCloth(cloth.uuid)"
-          @displayClothDetail="clothDetailData"
-        />
+        <ClothList :selectedCloth="selectedCloth" @updateSelectedCloth="updateSelectedCloth" />
       </div>
       <h2>ETAPE 2 - C'EST TOUT BON POUR TOI ?</h2>
       <CommandSummary :productName="currentProduct.name" :selectedCloth="selectedCloth" />

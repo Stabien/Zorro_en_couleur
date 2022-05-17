@@ -1,5 +1,6 @@
 <script setup>
 import Product from '../../components/Product.vue'
+import AppSelect from '../../components/AppSelect.vue'
 import { useStore } from '../../store'
 import { ref, computed } from 'vue'
 
@@ -34,12 +35,15 @@ const products = computed(() => store.getProducts)
         >
           {{ item }}
         </span>
+        <AppSelect />
       </section>
+
       <section id="products">
-        <h2>Nos produits</h2>
+        <h2 class="font-semibold">Nos produits</h2>
         <div id="product-items-container">
           <Product
             v-for="item in products"
+            class="cursor-pointer"
             :key="item.uuid"
             :data="item"
             :class="{
@@ -92,7 +96,6 @@ main,
 }
 
 #products h2 {
-  font-weight: 500;
   margin-top: 60px;
 }
 
@@ -106,5 +109,11 @@ main,
 
 .hidden {
   display: none;
+}
+
+@media (max-width: 842px) {
+  #product-items-container {
+    justify-content: center;
+  }
 }
 </style>

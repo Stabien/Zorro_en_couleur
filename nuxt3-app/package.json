@@ -22,6 +22,7 @@
     "singleQuote": true,
     "jsxSingleQuote": false,
     "tabWidth": 2,
-    "useTabs": false
+    "useTabs": false,
+    "proseWrap": "always"
   }
 }

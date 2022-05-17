@@ -1,6 +1,6 @@
 <script setup>
 const props = defineProps({
-  currentCloth: Object
+  currentCloth: Object,
 })
 const emit = defineEmits(['hideModal'])
 const hideModal = () => emit('hideModal')
@@ -8,88 +8,52 @@ const imgUrl = `../${props.currentCloth.picture}`
 </script>
 
 <template>
-  <div id="cloth-detail-container">
-    <div @click="hideModal" id="background"></div>
-    <div id="cloth-detail">
-      <img :src="imgUrl"/>
-      <div id="description">
-        <h2>{{ currentCloth.nickname }}</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-           ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-        <h4>Composition : 100% {{ currentCloth.material }}</h4>
+  <div class="font-archivo absolute top-0 left-0">
+    <div class="fixed bg-black opacity-50 w-full" @click="hideModal" id="background"></div>
+    <div class="grid grid-rows-2 gap-4 rounded-3xl sm:grid-rows-1 sm:grid-cols-2 sm:gap-5" id="cloth-detail">
+      <div>
+        <img class="rounded-3xl w-52 h-52 sm:w-60 sm:h-60 md:w-80 md:h-80" :src="imgUrl" />
+      </div>
+      <div>
+        <h2 class="text-2xl font-semibold mb-2 md:mb-4">{{ currentCloth.nickname.toUpperCase() }}</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam
+        </p>
+        <h4 class="mt-4 text-md font-semibold">Composition : 100% {{ currentCloth.material }}</h4>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-#cloth-detail-container {
-  width: 100%;
-  min-height: 100vh;
-  position: absolute;
-}
-
 #background {
   position: fixed;
   background: black;
   opacity: 0.5;
-  height: 100vh;
   width: 100%;
 }
 
 #cloth-detail {
+  width: 700px;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: row;
   background: white;
   padding: 35px;
-  width: auto;
   z-index: 1000;
 }
 
-#cloth-detail img {
-  display: block;
-  width: 320px;
-  height: 320px;
+@media all and (min-width: 640px) and (max-width: 768px) {
+  #cloth-detail {
+    width: 500px;
+  }
 }
 
-#description {
-  display: block;
-  margin-left: 30px;
-  width: 350px;
-  height: 320px;
-}
-
-#description p {
-  font-size: 13px;
-}
-
-#description h2 {
-  margin: 0;
-}
-
-#description h3 {
-  margin-bottom: 7px;
-}
-
-#description h4 {
-  font-size: 13px;
-}
-
-ul {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  height: 150px;
-  margin-top: 5px;
-  padding-left: 15px;
-}
-
-ul li {
-  font-size: 14px;
-  margin-bottom: 1px;
+@media all and (max-width: 639px) {
+  #cloth-detail {
+    width: 280px;
+  }
 }
 </style>

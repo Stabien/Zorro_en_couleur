@@ -19,6 +19,7 @@ module.exports = {
     },
     fontFamily: {
       sans: ['archivo-regular', 'sans-serif'],
+      inter: ['inter', 'sans-serif'],
     },
   },
   plugins: [],

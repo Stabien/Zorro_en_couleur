@@ -11,9 +11,9 @@ const getProducts = computed(() => store.getProducts)
 <template>
   <div>
     <main>
-      <section class="ml-10 sm:ml-20 md:ml-30 lg:ml-40">
+      <section class="mx-auto">
         <div class="w-4/5 ml-0">
-          <h2>Gallerie des tissus</h2>
+          <h2 class="font-semibold mb-2">Gallerie des tissus</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
             dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
@@ -37,7 +37,7 @@ section {
   width: 70%;
 }
 
-#description h2 {
+h2 {
   font-size: 32px;
 }
 </style>

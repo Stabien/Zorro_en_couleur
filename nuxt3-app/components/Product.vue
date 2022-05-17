@@ -1,9 +1,9 @@
 <template>
   <div @click="redirectToProductDetail" class="product">
-    <img :src="getImgUrl(data.picture)"/>
+    <img :src="getImgUrl(data.picture)" />
     <div class="product-infos">
       <span>{{ data.category.toUpperCase() }}</span>
-      <h2>{{ data.name.toUpperCase() }}</h2>
+      <h2 class="font-medium">{{ data.name.toUpperCase() }}</h2>
       <p>A partir de</p>
       <h3>{{ data.price }},00 €</h3>
     </div>
@@ -16,17 +16,17 @@ export default {
   props: {
     data: {
       required: true,
-      type: Object
-    }
+      type: Object,
+    },
   },
   methods: {
     getImgUrl(path) {
-      return `${path}`;
+      return `${path}`
     },
     redirectToProductDetail() {
-      this.$router.push({ path: `/shop/${this.data.name.toLowerCase()}`, query: { uuid: this.data.uuid } });
-    }
-  }
+      this.$router.push({ path: `/shop/${this.data.name.toLowerCase()}`, query: { uuid: this.data.uuid } })
+    },
+  },
 }
 </script>
 
@@ -34,7 +34,7 @@ export default {
 .product {
   display: block;
   background: white;
-  border: 1px solid #EAEBEE;
+  border: 1px solid #eaebee;
   padding: 12px;
   border-radius: 15px;
   width: 285px;
@@ -45,7 +45,6 @@ export default {
 
 .product img {
   width: 285px;
-  height: 285px;
 }
 
 .product-infos {
@@ -56,28 +55,26 @@ export default {
 .product-infos span {
   display: block;
   font-size: 12px;
-  color: #A3A3A3;
-  font-weight: 400;
+  color: #a3a3a3;
 }
 
 .product-infos h2 {
   margin-top: 5px;
   margin-bottom: 5px;
   font-size: 18px;
-  font-weight: 400;
 }
 
 .product-infos p {
   margin-top: 5px;
   margin-bottom: 0;
   font-size: 12px;
-  color: #3CAAB1;
+  color: #3caab1;
 }
 
 .product-infos h3 {
   margin-top: 0;
   margin-bottom: 10px;
-  color: #3CAAB1;
+  color: #3caab1;
   font-size: 20px;
 }
 </style>

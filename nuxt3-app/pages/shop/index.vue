@@ -35,7 +35,7 @@ const products = computed(() => store.getProducts)
         >
           {{ item }}
         </span>
-        <AppSelect />
+        <AppSelect :categories="filters" />
       </section>
 
       <section id="products">

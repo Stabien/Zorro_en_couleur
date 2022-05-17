@@ -16,6 +16,7 @@ module.exports = {
       gray: '#C0C0C0',
       'dark-gray': '#70797B',
       'dark-blue': '#115D62',
+      white: '#FFF',
     },
     fontFamily: {
       sans: ['archivo-regular', 'sans-serif'],
